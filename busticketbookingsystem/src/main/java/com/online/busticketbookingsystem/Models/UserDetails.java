@@ -1,65 +1,54 @@
 package com.online.busticketbookingsystem.Models;
 
+
+import java.util.Collection;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
+
 @Entity
 @Table(name="details")
 public class UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int id;
-	public String name;
-	public String dob;
-	public String address;
-	public String phone;
-	public String email;
-	public String password;
-	/*public UserDetails(){
-		
-	}
-	public UserDetails(String name, String dob, String address, String phone, String email, String password){
-		this.name=name;
-		this.dob=dob;
-		this.address=address;
-		this.phone=phone;
-		this.email=email;
-		this.password=password;
-	}*/
-
-	public int getId() {
-		
+private Long id;
+	
+	@Column(nullable=false,unique=true,length=45)
+	private String email;
+	
+	@Column(nullable=false,length=64)
+	private String password;
+	
+	@Column(nullable=false,length=20)
+	private String firstName;
+	
+	@Column(nullable=false,length=20)
+	private String lastName;
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getDob() {
-		return dob;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setDob(String dob) {
-		this.dob = dob;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	public String getEmail() {
 		return email;
@@ -71,15 +60,12 @@ public class UserDetails {
 		return password;
 	}
 	public void setPassword(String password) {
-
 		this.password = password;
 	}
-
-	@Override
-	public String toString() {
-		return "UserDetails [id=" + id + ", name=" + name + ", dob=" + dob + ", address=" + address + ", phone=" + phone
-				+ ", email=" + email + ", password=" + password + "]";
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
 
 }
-
